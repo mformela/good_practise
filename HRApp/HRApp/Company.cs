@@ -20,34 +20,40 @@ namespace HRApp
     public class Company
     {
         private readonly string _name;
-        private List<IEmployee> _employees;
+        private readonly List<Employee> _employees;
 
         public Company(string name)
         {
             _name = name;
-            _employees = new List<IEmployee>();
+            _employees = new List<Employee>();
         }
 
-        public string GetName() //publiczna metoda, uruchamiana w testach  
+        public string GetCompanyName() //publiczna metoda, uruchamiana w testach  
         {
             return _name;
         }
 
-        public void AddEmployee(IEmployee employee)
+        public void AddEmployee(Employee employee)
         {
             
             _employees.Add(employee);
         }
 
-        public List<IEmployee> GetAllEmployees()
+        public List<Employee> GetAllEmployees()
         {
             return _employees;
         }
 
 
-        public List<IEmployee> GetAllEmployees(Department department)
+        public List<Employee> GetAllEmployees(Department department)
         {
-            return _employees.Where(x => x.GetDepartment() == department).ToList();
+            return _employees.Where(x => x.Department == department).ToList();
         }
+
+        public Employee GetEmployeeByName(string firstName, string lastName)
+        {
+            return _employees.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
+        }
+        
     }
 }

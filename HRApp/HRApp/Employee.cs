@@ -6,39 +6,30 @@ using System.Threading.Tasks;
 
 namespace HRApp
 {
-    public class Employee : IEmployee
+    public class Employee 
     {
         
-        private Department _department;
-        private readonly string _firstName;
-        private readonly string _lastName;
-        private readonly int _age;
-        private readonly decimal _salary;
+        public Department Department { get;  set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+        public int Age { get; private set; }
+        public decimal Salary { get; private set; }
 
 
         public Employee(Department department, string firstName, string lastName, int age, decimal salary)
         {
-            _department = department;
-            _firstName = firstName;
-            _lastName = lastName;
-            _age = age;
-            _salary = salary;
+            Department = department;
+            FirstName = firstName;
+            LastName = lastName;
+            Age = age;
+            Salary = salary;
 
         }
 
-        public Department GetDepartment()
+        public void IncreaseSalary(double percentage)
         {
-            return _department;
+            Salary *= (decimal) (100 + percentage)/100;
         }
-
-        public void SetDepratment(Department department)
-        {
-            _department = department;
-        }
-
-        public string GetFirstName()
-        {
-            return _firstName;
-        }
+        
     }
 }
